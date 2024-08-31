@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #4a90e2, #0056b3);
+            background-size: 200% 100%;
+            animation: gradientBG 10s ease infinite;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .login-container {
+            max-width: 400px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            color: #495057;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .form-group input:focus {
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        .input-group-prepend .input-group-text {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.15s ease-in-out;
+        }
+
+        .btn-login:hover {
+            background-color: #0056b3;
+        }
+
+        .login-links {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-links a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.15s ease-in-out;
+        }
+
+        .login-links a:hover {
+            color: #0056b3;
+        }
+
+        .imagem{
+
+            heigth:150px;
+            width: 150px;
+            border-radius:20px;
+            margin-left:120px;
+            margin-top:15px;
+            margin-bottom:10px;
+        }
+
+    </style>
+</head>
+<body>
+
+
+<main>
+
+    <img id="imagemLogo" class="imagem" src="/api/image" alt="Descrição da Imagem">
+    <div class="login-container">
+
+
+        <div th:if="${param.error}" class="alert alert-success">
+            Usuario ou Senha inv
+        </div>
+
+        <div th:if="${param.logout}" class="alert alert-success">
+            Vocse desconectou.</div>
+        <h2><i class="fas fa-user-lock"></i> Login</h2>
+        <form th:action="@{/login}" method="post">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Username" name="username" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    </div>
+                    <input type="password" class="form-control" placeholder="Password" name="password" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-login">Login</button>
+        </form>
+        <div class="login-links">
+            <a href="#"><i class="fas fa-key"></i> Esqueceu a senha?</a> | <a href="/register"><i class="fas fa-user-plus"></i> Cadastre-se</a>
+        </div>
+
+        <footer class="footer bg-light mt-4">
+            <div class="container">
+                <p class="text-center mb-0">© 2024 StonaTech - Todos os direitos reservados</p>
+            </div>
+        </footer>
+    </div>
+</main>
+
+<!-- Bootstrap JS (Optional, only needed if you want to use Bootstrap's JavaScript features) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Font Awesome JS (Optional, only needed if you want to use Font Awesome icons) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</body>
+
+
+
+</html>
