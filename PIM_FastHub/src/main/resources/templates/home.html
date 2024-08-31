@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<head>
+    <title>Teste Pagina Administrativa</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .navbar-custom {
+            background-color: #050000	;
+        }
+
+        .pNavBar{
+            color:#ffffff;
+        }
+
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-light navbar-custom m-3">
+    <a class="navbar-brand" th:href="@{/administracao/home}"><p class="pNavBar">FastHub</p></a>
+
+    <a class="navbar-brand" th:href="@{/administracao/servico/lista}"><p class="pNavBar">Serviços</p></a>
+    <a class="navbar-brand" th:href="@{/logout}"><p class="pNavBar">LogOut</p></a>
+</nav>
+
+<h1 class="m-3">Inicio Parte Administrativa</h1>
+
+<div class="m-3" th:if="${#authorization.expression('hasRole(''ADMIN'') or hasRole(''prestador'')')}">
+    <p>Esta uma pde teste restrita apenas para usucom a funde ADMIN ou prestador.</p>
+</div>
+
+
+
+
+<div class="m-3" th:unless="${#authorization.expression('hasRole(''ADMIN'') or hasRole(''prestador'')')}">
+    <p>Vocntem permisspara acessar esta p</p>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+<footer class="footer bg-light mt-4">
+    <div class="container">
+        <p class="text-center mb-0">© 2024 FastHub - Todos os direitos reservados</p>
+    </div>
+</footer>
+
+</html>

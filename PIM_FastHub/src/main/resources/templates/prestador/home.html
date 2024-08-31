@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home do Prestador</title>
+    <link rel="stylesheet" href="/path/to/your/bootstrap.css"> <!-- Ajuste o caminho conforme necessário -->
+    <style>
+        .container {
+            margin-top: 20px;
+        }
+        .service-info {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Bem-vindo à Página do Prestador</h1>
+
+    <div class="service-info">
+        <h2>Serviço Selecionado:</h2>
+        <p th:text="${servico}">Serviço não selecionado</p>
+    </div>
+
+    <!-- Se desejar mostrar uma lista de serviços disponíveis -->
+    <h2>Outros Serviços Disponíveis:</h2>
+    <ul>
+        <li th:each="servico : ${listaServicos}">
+            <span th:text="${servico.nome}">Nome do Serviço</span>
+        </li>
+    </ul>
+</div>
+
+<!-- Scripts -->
+<script src="/path/to/your/bootstrap.bundle.js"></script> <!-- Ajuste o caminho conforme necessário -->
+</body>
+</html>
