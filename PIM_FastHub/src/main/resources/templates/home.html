@@ -1,50 +1,57 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<html lang="pt-BR">
 <head>
-    <title>Teste Pagina Administrativa</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastHub</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        .navbar-custom {
-            background-color: #050000	;
-        }
-
-        .pNavBar{
-            color:#ffffff;
-        }
-
-    </style>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Text:ital@0;1&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="container-fluid">
+        <div class="row aba_navegacao">
+            <div class="col-12 d-flex justify-content-between align-items-center p-3">
+                <img src="./logo.png" alt="Logo FastHub" class="logo">
+                <div class="navegacao-links d-flex align-items-center">
+                    <button onclick="document.getElementById('sobre-nos-conteudo').scrollIntoView({behavior: 'smooth'})">Quem somos nós?</button>
+                    <button class="btn btn-link" onclick="window.location.href='form_cliente.html';">Seja cliente</button>
+                    <span class="mx-3">OU</span>
+                    <button class="btn btn-link" onclick="window.location.href='form_prestador.html';">Seja prestador</button>
+                    <button class="login-btn btn" onclick="window.location.href='login.html';">Login</button>
+                </div>
+            </div>
+        </div>
 
-<nav class="navbar navbar-light navbar-custom m-3">
-    <a class="navbar-brand" th:href="@{/administracao/home}"><p class="pNavBar">FastHub</p></a>
+        <div class="row main-content">
+            <div class="col-md-6 d-flex flex-column align-items-start images-container">
+                <img id="img1" src="./Selecting team-bro.png" alt="Ilustração" class="illustration img-fluid">
+                <img id="img2" src="./Live collaboration-amico.png" alt="Imagem Principal" class="text-image img-fluid">
+            </div>            
+            <div class="col-md-6 d-flex align-items-center main_text">
+                <p class="slogan">CONECTANDO AOS MELHORES PRESTADORES DE SERVIÇO COM RAPIDEZ E CONFIANÇA!</p>
+            </div>
+        </div>
 
-    <a class="navbar-brand" th:href="@{/administracao/servico/lista}"><p class="pNavBar">Serviços</p></a>
-    <a class="navbar-brand" th:href="@{/logout}"><p class="pNavBar">LogOut</p></a>
-</nav>
-
-<h1 class="m-3">Inicio Parte Administrativa</h1>
-
-<div class="m-3" th:if="${#authorization.expression('hasRole(''ADMIN'') or hasRole(''prestador'')')}">
-    <p>Esta uma pde teste restrita apenas para usucom a funde ADMIN ou prestador.</p>
-</div>
-
-
-
-
-<div class="m-3" th:unless="${#authorization.expression('hasRole(''ADMIN'') or hasRole(''prestador'')')}">
-    <p>Vocntem permisspara acessar esta p</p>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-<footer class="footer bg-light mt-4">
-    <div class="container">
-        <p class="text-center mb-0">© 2024 FastHub - Todos os direitos reservados</p>
+        <!-- Seção Sobre Nós (oculta inicialmente) -->
+        <div id="sobre-nos-conteudo">
+            <h2>Sobre Nós</h2>
+            <p>Quem Somos
+                Na FastHub, entendemos que manter sua casa em perfeito estado pode ser um desafio. Por isso, criamos uma plataforma que conecta você, cliente, aos melhores profissionais de manutenção domiciliar. Nossa missão é tornar simples e eficiente o processo de encontrar especialistas qualificados para cuidar de suas necessidades, desde pequenos reparos até grandes reformas.
+                
+                Com uma rede de profissionais cadastrados e avaliados, garantimos que cada serviço seja realizado com excelência, segurança e transparência. Nós nos preocupamos em oferecer uma experiência prática e confiável, para que você tenha a tranquilidade de saber que sua casa está em boas mãos.
+                
+                Seja qual for a sua demanda, estamos aqui para ajudar a encontrar a solução ideal. Na FastHub, sua satisfação é o nosso compromisso.</p>
+            <!--<button id="voltar-topo" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">Voltar ao topo</button> -->
+        </div>
     </div>
-</footer>
 
+    <!-- Incluindo o script JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="./script.js"></script>
+</body>
 </html>

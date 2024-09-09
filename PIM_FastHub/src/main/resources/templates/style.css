@@ -1,0 +1,165 @@
+.hidden {
+    display: none;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden; 
+    overflow-y: auto; 
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+.aba_navegacao {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed; 
+    width: 100%;
+    top: 0;
+    z-index: 1000; 
+}
+
+.aba_navegacao .logo {
+    height: 70px;
+    width: 150px;
+}
+
+.navegacao-links {
+    display: flex;
+    align-items: center;
+}
+
+.navegacao-links button, .navegacao-links span {
+    background-color: #ffffff;
+    border: none;
+    font-size: 20px;
+    color: #494c4e;
+    font-weight: 600;
+    margin-right: 20px;
+    padding: 10px 10px;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.3s;
+    text-decoration: none; 
+    box-shadow: none; 
+    cursor: pointer;
+}
+
+.navegacao-links button:hover {
+    cursor: pointer;
+    border-bottom: 5px solid #e6006f;
+    color: #252525; 
+}
+
+.navegacao-links button:focus {
+    outline: none; 
+}
+
+.login-btn {
+    background-color: #FF0077;
+    color: #e6006f;
+    border-radius: 20px;
+    padding: 10px 10px;
+    text-decoration: none; 
+    box-shadow: none; 
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background-color: #e6006f;
+    color: #ffffff;
+}
+
+.main-content {
+    flex: 1; 
+    padding: 40px;
+    background-color: #ffffff;
+}
+
+.images-container {
+    position: relative;
+    width: 100%;
+    height: auto; 
+    overflow: visible; 
+}
+
+.images-container img {
+    max-width: 100%; 
+    height: auto; 
+}
+
+.images-container .text-image {
+    position: absolute;
+    top: 260px;
+    left: 400px; 
+    width: 100%; 
+    max-width: 500px; 
+}
+
+#img1 {
+    width: 60vh;
+    height: 65vh;
+    margin-top: 10vh;
+}
+
+#img2 {
+    width: 60vh;
+    height: 65vh;
+    margin-top: -10vh;
+    margin-left: -10vh; 
+}
+
+.main_text {
+    color: #FF0077;
+    font-size: 2.5rem;
+    font-family: "Kanit", sans-serif;
+    font-weight: 600;
+    padding: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+#voltar-topo {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #FF0077;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#voltar-topo:hover {
+    background-color: #e6006f;
+}
+
+@media (max-width: 768px) {
+    .images-container .text-image {
+        position: static; 
+        width: 100%;
+        max-width: none;
+        margin-top: 20px;
+    }
+
+    .main_text {
+        font-size: 1.5rem;
+        padding: 1rem;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .navegacao-links button {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+}
