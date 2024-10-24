@@ -13,14 +13,25 @@
 <body>
 
 
-    <nav class="navbar navbar-light navbar-custom m-3">
-        <a class="navbar-brand" th:href="@{/administracao/home}"><p class="pNavBar">FastHub</p></a>
+<nav class="navbar navbar-light navbar-custom m-3">
+    <a class="navbar-brand" th:href="@{/administracao/home}">
+        <p class="pNavBar">FastHub</p>
+    </a>
+    <a class="navbar-brand" th:href="@{/administracao/servico/lista}">
+        <p class="pNavBar">Solicitações de Serviço</p>
+    </a>
 
-        <a class="navbar-brand" th:href="@{/administracao/servico/lista}"><p class="pNavBar">Serviços</p></a>
-        <a class="navbar-brand" th:href="@{/logout}"><p class="pNavBar">LogOut</p></a>
-    </nav>
+    <a class="navbar-brand" th:href="@{/administracao/usuario/lista}">
+        <p class="pNavBar">Usuarios</p>
+    </a>
 
-    <div class="container">
+    <a class="navbar-brand" th:href="@{/logout}">
+        <p class="pNavBar">LogOut</p>
+    </a>
+</nav>
+
+
+<div class="container">
     <h1 th:text="${#strings.isEmpty(servico.id) ? 'Adicionar Serviço' : 'Editar Serviço'}">Formulário de Serviço</h1>
     <form th:action="@{${#strings.isEmpty(servico.id) ? '/administracao/servico/insere' : '/administracao/servico/altera'}}" method="post">
         <div class="form-group">

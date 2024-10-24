@@ -41,7 +41,7 @@ public class PrestadorHomeController {
            System.out.println("Ocorreu um erro");
        }
 
-
+        model.addAttribute("usuarioid", usuario.get().getId());
         return "prestador/home";
     }
 

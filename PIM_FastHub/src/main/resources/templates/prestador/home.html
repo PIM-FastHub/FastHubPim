@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Home do Prestador</title>
-    <link rel="stylesheet" href="/path/to/your/bootstrap.css"> <!-- Ajuste o caminho conforme necessário -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         .container {
             margin-top: 20px;
@@ -12,11 +13,41 @@
             margin-top: 20px;
             font-size: 1.2em;
         }
+
+           .navbar-custom {
+            background-color: #050000	;
+        }
+
+        .pNavBar{
+            color:#ffffff;
+        }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>Bem-vindo à Página do Prestador</h1>
+
+    <nav class="navbar navbar-light navbar-custom m-3">
+        <a class="navbar-brand" th:href="@{/prestador/home/{id}(id=${usuarioid})}">
+            <p class="pNavBar">FastHub</p>
+        </a>
+        <a class="navbar-brand" th:href="@{/prestador/solicitacoes/{id}(id=${usuarioid})}">
+            <p class="pNavBar">Solicitações de Serviço</p>
+        </a>
+
+        <a class="navbar-brand" th:href="@{/prestador/historico/{id}(id=${usuarioid})}">
+            <p class="pNavBar">Historico Solicitações</p>
+        </a>
+
+        <a class="navbar-brand" th:href="@{/prestador/meuperfil/{id}(id=${usuarioid})}">
+            <p class="pNavBar">Perfil</p>
+        </a>
+
+        <a class="navbar-brand" th:href="@{/logout}">
+            <p class="pNavBar">LogOut</p>
+        </a>
+    </nav>
+
+
 
     <div class="service-info">
         <h2>Serviço Selecionado:</h2>
