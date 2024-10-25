@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico Solicitações</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #797679, #f860a7);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .navbar {
+            background-color: #fa2689;
+        }
+
+        .navbar-brand {
+            color: #ffffff !important;
+            font-weight: bold;
+        }
+
+        .navbar-brand:hover {
+            color: #fff !important;
+            text-decoration: none;
+        }
+
+        .navbar-nav .nav-item {
+            margin-right: 20px;
+        }
+
+        .nav-link {
+            color: #ffffff !important;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #fff !important;
+            text-decoration: none;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background-color: #f1eaed;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .container {
+            margin-top: 100px;
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            max-width: 1000px;
+            width: 100%;
+            margin: 100px auto;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .table-responsive {
+            margin-top: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        thead {
+            background-color: #fa2689;
+            color: white;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:hover {
+            background-color: #ddd;
+        }
+
+        footer {
+            margin-top: auto;
+            font-size: 12px;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+            <a class="navbar-brand" th:href="@{/prestador/home/{id}(id=${usuarioid})}">
+                FastHub
+            </a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/prestador/solicitacoes/{id}(id=${usuarioid})}">Solicitações de Serviço</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/prestador/historico/{id}(id=${usuarioid})}">Historico Solicitações</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/logout}">LogOut</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <h1>Histórico de Solicitações</h1>
+        <!-- Tabela de Histórico de Serviços -->
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Data da Solicitação</th>
+                        <th>Cliente</th>
+                        <th>Serviço</th>
+                        <th>Prazo</th>
+                        <th>Descrição do Problema</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Iterando sobre a lista de serviços -->
+                    <tr th:each="servico : ${listaServicos}">
+                        <td th:text="${#dates.format(servico.dataSolicitacao.time, 'dd/MM/yyyy')}">01/01/2024</td>
+                        <td th:text="${servico.clienteId.username}">Nome do Cliente</td>
+                        <td th:text="${servico.servicoId.descricao}">Nome do Serviço</td>
+                        <td th:text="${servico.prazo}">10 dias</td>
+                        <td th:text="${servico.descricaoDoProblema}">Descrição do problema</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 FastHub. Todos os direitos reservados.
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

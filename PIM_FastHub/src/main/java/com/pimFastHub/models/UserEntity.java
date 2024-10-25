@@ -22,11 +22,10 @@ public class UserEntity {
     private String email;
 
     private String password;
-
-
     @ManyToOne
     private ServicoModel servicoObj;
 
+    private Boolean temFastCash;
     public UserEntity(Long id, String username, String email, String password, List<Role> roles) {
         this.id = id;
         this.username = username;
@@ -85,6 +84,14 @@ public class UserEntity {
 
     public ServicoModel getServico(){
         return servicoObj;
+    }
+
+    public Boolean getTemFastCash() {
+        return temFastCash;
+    }
+
+    public void setTemFastCash(Boolean temFastCash) {
+        this.temFastCash = temFastCash;
     }
 
     public UserEntity() {}

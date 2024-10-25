@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home do Prestador</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #797679, #f860a7);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .navbar {
+            background-color: #fa2689;
+        }
+
+        .navbar-brand {
+            color: #ffffff !important;
+            font-weight: bold;
+        }
+
+        .navbar-brand:hover {
+            color: #fff !important;
+            text-decoration: none;
+        }
+
+        .navbar-nav .nav-item {
+            margin-right: 20px;
+        }
+
+        .nav-link {
+            color: #ffffff !important;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #fff !important;
+            text-decoration: none;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background-color: #f1eaed;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .container {
+            margin-top: 100px;
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            max-width: 1000px;
+            width: 100%;
+            margin: 100px auto;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        .service-info {
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        li {
+            background-color: #f8f9fa;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        li span {
+            font-weight: bold;
+            color: #fa2689;
+        }
+
+        footer {
+            margin-top: auto;
+            font-size: 12px;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+            <a class="navbar-brand" th:href="@{/prestador/home/{id}(id=${usuarioid})}">
+                FastHub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/prestador/solicitacoes/{id}(id=${usuarioid})}">Solicitações de Serviço</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/prestador/historico/{id}(id=${usuarioid})}">Histórico Solicitações</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/prestador/meuperfil/{id}(id=${usuarioid})}">Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/logout}">LogOut</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="service-info">
+            <h2>Serviço Selecionado:</h2>
+            <p th:text="${servico}">Serviço não selecionado</p>
+        </div>
+
+        <h2>Outros Serviços Disponíveis:</h2>
+        <ul>
+            <li th:each="servico : ${listaServicos}">
+                <span th:text="${servico.nome}">Nome do Serviço</span>
+            </li>
+        </ul>
+    </div>
+
+    <footer>
+        &copy; 2024 FastHub. Todos os direitos reservados.
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

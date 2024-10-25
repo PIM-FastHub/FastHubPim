@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes Solicitação</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #797679, #f860a7);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .navbar {
+            background-color: #fa2689;
+        }
+
+        .navbar-brand {
+            color: #ffffff !important;
+            font-weight: bold;
+        }
+
+        .navbar-brand:hover {
+            color: #fff !important;
+            text-decoration: none;
+        }
+
+        .navbar-nav .nav-item {
+            margin-right: 20px;
+        }
+
+        .nav-link {
+            color: #ffffff !important;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #fff !important;
+            text-decoration: none;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background-color: #f1eaed;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .container {
+            margin-top: 100px;
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            max-width: 800px;
+            width: 100%;
+            margin: 100px auto;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: #fa2689;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #e83e8c, #d63384);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #d63384, #c0277f);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .blur {
+            filter: blur(5px);
+            pointer-events: none;
+        }
+
+        .message {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        footer {
+            margin-top: auto;
+            font-size: 12px;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+            <a class="navbar-brand" th:href="@{/prestador/home/{id}(id=${usuarioid})}">
+                FastHub
+            </a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/prestador/solicitacoes/{id}(id=${usuarioid})}">Solicitações de Serviço</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/prestador/meuperfil/{id}(id=${usuarioid})}">Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/logout}">LogOut</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <h2>Detalhes Da Solicitação</h2>
+
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${solicitacao.servicoId.descricao}">Serviço</h5>
+                <p class="card-text">
+                    <strong>Descrição do Problema:</strong>
+                    <span th:text="${solicitacao.descricaoDoProblema}">Descrição</span>
+                </p>
+                <p class="card-text">
+                    <strong>Prazo:</strong>
+                    <span th:text="${solicitacao.prazo}">Prazo</span>
+                </p>
+                <p class="card-text">
+                    <strong>Data da Solicitação:</strong>
+                    <span th:text="${#dates.format(solicitacao.dataSolicitacao.time, 'dd/MM/yyyy')}">Data</span>
+                </p>
+                <p class="card-text">
+                    <strong>Cliente:</strong>
+                    <span th:text="${solicitacao.clienteId.username}">Cliente</span>
+                </p>
+            </div>
+        </div>
+
+        <h5 class="mt-5">Informações do Cliente</h5>
+        <div th:if="${temCash}">
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">Informações do Cliente</h5>
+                    <p class="card-text"><strong>Email:</strong> <span th:text="${usuarioEmail}">Email</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Se não tiver FastCash, o card aparece borrado -->
+        <div th:if="${!temCash}">
+            <div class="card mt-4 blur">
+                <div class="card-body">
+                    <h5 class="card-title">Informações do Cliente</h5>
+                    <p class="card-text">Este cliente não possui FastCash habilitado.</p>
+                </div>
+            </div>
+            <div class="message">
+                <p>Acesso restrito. Somente usuários com FastCash habilitado podem visualizar os detalhes.</p>
+            </div>
+        </div>
+
+        <a th:href="@{/prestador/solicitacoes/{id}(id=${usuarioId})}" class="btn btn-primary mt-4">Voltar às Solicitações</a>
+    </div>
+
+    <footer>
+        &copy; 2024 FastHub. Todos os direitos reservados.
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
